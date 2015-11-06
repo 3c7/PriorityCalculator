@@ -1,1 +1,1 @@
-Main-Class: PriorityCalculator
+Main-Class: org.bonn.se.ws14.uebung4.PriorityCalculator
