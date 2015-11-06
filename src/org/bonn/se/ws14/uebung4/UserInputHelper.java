@@ -1,6 +1,6 @@
-package org.bonn.se.ws14.uebung3;
+package org.bonn.se.ws14.uebung4;
 
-import org.bonn.se.ws14.uebung3.exceptions.*;
+import org.bonn.se.ws14.uebung4.exceptions.*;
 import java.io.*;
 
 /**

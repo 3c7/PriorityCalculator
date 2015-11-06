@@ -1,4 +1,4 @@
-package org.bonn.se.ws14.uebung3;
+package org.bonn.se.ws14.uebung4;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
