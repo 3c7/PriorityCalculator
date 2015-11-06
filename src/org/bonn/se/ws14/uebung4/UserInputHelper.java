@@ -78,13 +78,10 @@ class UserInputHelper {
 
         // Variables
         int value, effort, risk, penalty;
+        double priority;
 
         // Split the parameters
         String data[] = this.userInput.split(",");
-
-
-        // Create the org.bonn.se.ws14.uebung3.UserStory
-        UserStory uStory = new UserStory();
 
         // Fill necessary information
         try {
@@ -92,6 +89,7 @@ class UserInputHelper {
             effort = Integer.parseInt(data[2]);
             risk = Integer.parseInt(data[3]);
             penalty = Integer.parseInt(data[4]);
+            priority = (double)(value + penalty) / (effort + risk);
 
             // Check if parameter are in correct range
             if (!inRange(value, 0, 5) || !inRange(risk, 0, 5) || !inRange(penalty, 0, 5))
@@ -101,12 +99,7 @@ class UserInputHelper {
             if (!fibonacciCheck(effort))
                 throw new NotAFibonacciNumberException();
 
-            uStory.setTitle(data[0]);
-            uStory.setValue(value);
-            uStory.setEffort(effort);
-            uStory.setRisk(risk);
-            uStory.setPenalty(penalty);
-            uStory.setPriority((double)(value + penalty) / (effort + risk));
+            UserStory uStory = new UserStory(data[0], value, effort, risk, penalty, priority);
 
             // Append UserStory to container
             userStoryContainer.addStory(uStory);
