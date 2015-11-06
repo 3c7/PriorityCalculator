@@ -9,6 +9,7 @@ class PriorityCalculator {
     public static void main(String[] args) {
         UserInputHelper uih = new UserInputHelper();
 
+        // Loop getUserInput() until User wants to exit
         while(true) {
             try {
                 uih.getUserInput();
@@ -16,8 +17,10 @@ class PriorityCalculator {
                 System.out.println("Angegebener Aufwand ist keine Fibonacci Zahl.");
             } catch (ContainerFullException cfe) {
                 System.out.println("Es können maximal 10 UserStories angegeben werden.");
+            } catch (ValueOutOfRangeException voore) {
+                System.out.println("Parameter außerhalb des zulässigen Bereiches.");
             } catch (PriorityCalculatorException pce) {
-                System.out.println(pce.getMessage());
+                System.out.println("Unerwarteter Fehler.");
             } catch (UserQuitException uq) {
                 System.exit(0);
             }
