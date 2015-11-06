@@ -1,8 +1,6 @@
 package org.bonn.se.ws14.uebung3;
 
-import org.bonn.se.ws14.uebung3.exceptions.NotAFibonacciNumberException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
+import org.bonn.se.ws14.uebung3.exceptions.*;
 import java.io.*;
 
 /**
@@ -15,7 +13,7 @@ class UserInputHelper {
     private boolean debug = false;
 
     // Methods
-    public void getUserInput() throws org.bonn.se.ws14.uebung3.exceptions.PriorityCalculatorException, org.bonn.se.ws14.uebung3.exceptions.UserQuit {
+    public void getUserInput() throws PriorityCalculatorException, UserQuitException {
         String command;
 
         readline();
@@ -31,9 +29,6 @@ class UserInputHelper {
         }
 
         switch (command) {
-            case "help":
-                this.commandHelp();
-                break;
             case "enter":
                 this.commandEnter();
                 break;
@@ -54,7 +49,7 @@ class UserInputHelper {
                 System.out.println("Erweiterte Ausgabe angeschaltet.");
                 break;
             default:
-                throw new NotImplementedException();
+                this.commandHelp();
         }
         this.temp = "";
 
@@ -69,8 +64,8 @@ class UserInputHelper {
         }
     }
 
-    private void commandEnter() throws org.bonn.se.ws14.uebung3.exceptions.PriorityCalculatorException {
-        if (userStoryContainer.getCount() >= 10) throw new org.bonn.se.ws14.uebung3.exceptions.ContainerFullException();
+    private void commandEnter() throws PriorityCalculatorException {
+        if (userStoryContainer.getCount() >= 10) throw new ContainerFullException();
 
         // Split the parameters
         String data[] = this.temp.split(",");
@@ -110,8 +105,8 @@ class UserInputHelper {
                 "quit\t\t\t\t-\tBeendet das Programm");
     }
 
-    private void commandQuit() throws org.bonn.se.ws14.uebung3.exceptions.UserQuit {
-        throw new org.bonn.se.ws14.uebung3.exceptions.UserQuit();
+    private void commandQuit() throws UserQuitException {
+        throw new UserQuitException();
     }
 
     private void commandDump() {

@@ -44,7 +44,7 @@ class Container implements Serializable {
         Collections.sort(this.stories);
         System.out.println("Priorität\tTitel\tMehrwert\tAufwand\tRisiko\tStrafe");
         for (UserStory us : this.stories) {
-            System.out.println(new DecimalFormat("##.##").format(us.getPriority()) + "\t\t\t" + us.getTitle() + "\t" + us.getValue() + "\t" + us.getEffort()
+            System.out.println(new DecimalFormat("##.00").format(us.getPriority()) + "\t\t\t" + us.getTitle() + "\t" + us.getValue() + "\t" + us.getEffort()
                     + "\t" + us.getRisk() + "\t" + us.getPenalty());
         }
     }

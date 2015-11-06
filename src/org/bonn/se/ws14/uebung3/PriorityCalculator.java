@@ -1,6 +1,6 @@
 package org.bonn.se.ws14.uebung3;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.bonn.se.ws14.uebung3.exceptions.*;
 
 /**
  * Created by NilsK on 06.11.2015.
@@ -12,16 +12,14 @@ class PriorityCalculator {
         while(true) {
             try {
                 uih.getUserInput();
-            } catch (org.bonn.se.ws14.uebung3.exceptions.NotAFibonacciNumberException nafne) {
+            } catch (NotAFibonacciNumberException nafne) {
                 System.out.println("Angegebener Aufwand ist keine Fibonacci Zahl.");
-            } catch (org.bonn.se.ws14.uebung3.exceptions.ContainerFullException cfe) {
+            } catch (ContainerFullException cfe) {
                 System.out.println("Es können maximal 10 UserStories angegeben werden.");
-            } catch (org.bonn.se.ws14.uebung3.exceptions.PriorityCalculatorException pce) {
+            } catch (PriorityCalculatorException pce) {
                 System.out.println(pce.getMessage());
-            } catch (org.bonn.se.ws14.uebung3.exceptions.UserQuit uq) {
+            } catch (UserQuitException uq) {
                 System.exit(0);
-            } catch (NotImplementedException nie) {
-                System.out.println("Dieses Feature wurde noch nicht implementiert.");
             }
         }
 
