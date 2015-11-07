@@ -2,6 +2,8 @@ package org.bonn.se.ws14.uebung4;
 
 import org.bonn.se.ws14.uebung4.exceptions.*;
 
+import java.io.IOException;
+
 /**
  * Created by NilsK on 06.11.2015.
  */
@@ -23,6 +25,8 @@ class PriorityCalculator {
                 System.out.println("Unerwarteter Fehler.");
             } catch (UserQuitException uq) {
                 System.exit(0);
+            } catch (IOException ioe) {
+                System.out.println("Lesen von Konsoleneingaben nicht möglich.");
             }
         }
 

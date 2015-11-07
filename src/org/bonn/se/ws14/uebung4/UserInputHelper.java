@@ -12,7 +12,7 @@ class UserInputHelper {
     private boolean debug = false;
 
     // Methods
-    public void getUserInput() throws PriorityCalculatorException, UserQuitException {
+    public void getUserInput() throws PriorityCalculatorException, UserQuitException, IOException {
         String command;
 
         // Reads a new line from java.lang.System.in
@@ -58,18 +58,15 @@ class UserInputHelper {
 
     }
 
-    private void readline() {
+    private void readline() throws IOException {
         // Create BufferedReader to read from System.in
         BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
 
         // Cursor
         System.out.print("> ");
-        try {
-            this.userInput = bReader.readLine();
-        } catch (IOException ioe) {
-            System.out.println("Fehler: BufferedReader konnte nicht von System.in lesen.");
-            ioe.printStackTrace();
-        }
+
+        // Read userInput from Terminal (System.in)
+        this.userInput = bReader.readLine();
     }
 
     // ENTER
@@ -92,7 +89,7 @@ class UserInputHelper {
             priority = (double)(value + penalty) / (effort + risk);
 
             // Check if parameter are in correct range
-            if (!inRange(value, 0, 5) || !inRange(risk, 0, 5) || !inRange(penalty, 0, 5))
+            if (!inRange(value) || !inRange(risk) || !inRange(penalty))
                 throw new ValueOutOfRangeException();
 
             // Check if Effort is a Fibonacci Number
@@ -185,7 +182,8 @@ class UserInputHelper {
         if(this.debug) e.printStackTrace();
     }
 
-    private static boolean inRange(int a, int b, int c) {
-        return a>=b && a<=c;
+    // Check if Value a element of [0, 5]
+    private static boolean inRange(int a) {
+        return a>=0 && a<=5;
     }
 }

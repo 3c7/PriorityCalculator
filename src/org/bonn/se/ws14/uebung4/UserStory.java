@@ -1,6 +1,7 @@
 package org.bonn.se.ws14.uebung4;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 /**
  * Created by NilsK on 06.11.2015.
@@ -27,6 +28,12 @@ class UserStory implements Comparable<UserStory>, Serializable {
         if (this.priority > us.priority) return -1;
         if (this.priority < us.priority) return 1;
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return new DecimalFormat("#0.00").format(this.priority) + "\t" + this.title + "\t" + this.value + "\t"
+                + this.effort + "\t" + this.risk + "\t" + this.penalty;
     }
 
     // Getter
