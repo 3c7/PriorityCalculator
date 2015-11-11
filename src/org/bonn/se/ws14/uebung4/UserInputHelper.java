@@ -137,8 +137,9 @@ class UserInputHelper {
     // STORE
     // Save the current container into a *.priocalc-file, the user has not to append .priocalc
     private void commandStore() {
+        ObjectOutputStream outputStream = null;
         try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(this.userInput + ".priocalc", false));
+            outputStream = new ObjectOutputStream(new FileOutputStream(this.userInput + ".priocalc", false));
             outputStream.writeObject(this.userStoryContainer);
         } catch (FileNotFoundException fnfe) {
             System.out.println("FEHLER: Konnte Datei nicht öffnen.");
@@ -146,14 +147,21 @@ class UserInputHelper {
         } catch (IOException ioe) {
             System.out.println("FEHLER: Konnte nicht in Datei schreiben.");
             this.debugOut(ioe);
+        } finally {
+            try {
+                outputStream.close();
+            } catch (IOException ioe) {
+                System.out.println("FEHLER: Dateistream konnte nicht geschlossen werden.");
+            }
         }
     }
 
     // LOAD
     // Load a container from a *.priocalc-file, the user has not to appent .priocalc
     private void commandLoad() {
+        ObjectInputStream inputStream = null;
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(this.userInput + ".priocalc"));
+            inputStream = new ObjectInputStream(new FileInputStream(this.userInput + ".priocalc"));
             userStoryContainer = (Container)inputStream.readObject();
         } catch (FileNotFoundException fnfe) {
             System.out.println("FEHLER: Datei nicht gefunden.");
@@ -164,6 +172,12 @@ class UserInputHelper {
         } catch (ClassNotFoundException cnfe) {
             System.out.println("FEHLER: Datei gefunden, aber der Inhalt ist nicht kompatibel.");
             this.debugOut(cnfe);
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException ioe) {
+                System.out.println("FEHLER: Dateistream konnte nicht geschlossen werden.");
+            }
         }
     }
 
